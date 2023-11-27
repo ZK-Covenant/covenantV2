@@ -4,7 +4,6 @@ pragma solidity ^0.8.13;
 import {IMerkleTree} from "./IMerkleTree.sol";
 
 interface ICycle is IMerkleTree {
-
     /*~~~~~~~~~~~~~~~~~~~~~ NOTES ~~~~~~~~~~~~~~~~~~~~* /
     // 
 
@@ -25,13 +24,13 @@ interface ICycle is IMerkleTree {
     function totalVoteCount() external;
 
     // Immutable constant
-    function max_denomination() external returns(uint256);
+    function max_denomination() external returns (uint256);
 
     // Immutable constant
-    function max_players() external returns(uint256);
+    function max_players() external returns (uint256);
 
     // Returns true when address(x) has voted
-    function hasVoted(address _user) external returns(bool);
+    function hasVoted(address _user) external returns (bool);
 
     // To be set by admin while starting cycle
     // To be used in many important functions
@@ -40,7 +39,7 @@ interface ICycle is IMerkleTree {
     // Returns 2 when cycle paused
     // Returns 3 when cycle ends
     // Returns 4 when vote counting is done
-    function cycleState() external;
+    function CYCLE_STATE() external;
 
     // Returns address(0) when winner not decided
     // Returns winner addres in other case
@@ -53,37 +52,24 @@ interface ICycle is IMerkleTree {
     // Checks admin access
     // Checks whether cycle hasn't started yet
     // Returns boolean value
-    function setDenomination(uint256 x) external returns(bool); 
-
-    
-
+    function setDenomination(uint256 x) external returns (uint256);
 
     // Chekcs admin access
     // Checks whether Cycle Stake Variables are set such to start the cycle
-    // 
+    //
     //
     //
     //
     // Sets cycleState to 1
     // Which is to be used to many important functions
-    function initCycle() external;
+    function initCycle() external returns(bool);
 
     // Checks admin access
-    // Checks whether 
+    // Checks whether
     function pauseCycle() external;
 
     // Checks isOpen() first
     // Returns -1 instead when not started
     // Returns contract's ETH holding instead
     function totalStaked() external;
-
-
-
-
-
-
-
-
-
-
 }
